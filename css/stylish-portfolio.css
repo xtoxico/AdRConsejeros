@@ -141,6 +141,14 @@ hr.small {
     right: 0;
 }
 
+#contacto-toggle {
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin-right: 200px;
+}
+
 #sidebar-wrapper.active {
     left: 250px;
     width: 250px;
