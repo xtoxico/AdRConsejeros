@@ -3,7 +3,7 @@
 include 'conect.php';
 
 if (isset($_GET['id'])){
-  $sql = 'select * from usuarios where id_hash="'.$_GET['id'].'"';
+  $sql = 'select * from usuarios where hash="'.$_GET['id'].'"';
   $res = mysqli_query($con,$sql);
   $num = mysqli_num_rows($res);
   if ($num<1){
@@ -191,7 +191,7 @@ if (isset($_GET['id'])){
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-primary">Login</button>
+            <button type="button" class="btn btn-primary" id="loginbutton">Login</button>
           </div>
         </div>
       </div>
@@ -204,5 +204,24 @@ if (isset($_GET['id'])){
     </script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
+
+      
+    <script>
+      $('#loginbutton').click(function(){
+          $.ajax({
+            method: "POST",
+            url: "ajaxscript/login.php",
+            data: { email: , password: },
+            success: function(msg){
+              aux = jQuery.parseJSON(msg);
+              if (aux.log==1){
+
+              }else{
+                //errores
+              }
+            }
+          })
+      })
+    </script>
   </body>
 </html>
