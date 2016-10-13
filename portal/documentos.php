@@ -1,3 +1,35 @@
+
+<?php
+
+
+  require_once "conect.php";
+    
+
+if (isset($_GET['id'])){
+  $sql = 'select * from adr_usuarios where hash="'.$_GET['id'].'"';
+  $res = mysqli_query($con,$sql);
+  $num = mysqli_num_rows($res);
+  if ($num<1){
+    $userlog=false;
+    $userstatus='Usuario no valido';
+  }else{
+    $userlog=true;
+    $row=mysqli_fetch_array($res);
+    $user=$row['nombre'];
+    $email=$row['email'];
+  }
+}else{
+  $userlog=false;
+  $userstatus='Usuario no logado';
+}
+ 
+
+  if ($userlog==false){ 
+    header ("location: main.php");
+  }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -32,7 +64,7 @@
   <body>
     <?php 
       require_once "navbar.php";
-      require_once "conect.php";
+
     ?>
     <div class="container">
       <div class="row-fluid">

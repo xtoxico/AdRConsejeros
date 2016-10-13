@@ -1,3 +1,36 @@
+
+<?php
+
+
+  require_once "conect.php";
+    
+
+if (isset($_GET['id'])){
+  $sql = 'select * from adr_usuarios where admin=1 and hash="'.$_GET['id'].'"';
+  $res = mysqli_query($con,$sql);
+  $num = mysqli_num_rows($res);
+  if ($num<1){
+    $userlog=false;
+    $userstatus='Usuario no valido';
+  }else{
+    $userlog=true;
+    $row=mysqli_fetch_array($res);
+    $user=$row['nombre'];
+    $email=$row['email'];
+  }
+}else{
+  $userlog=false;
+  $userstatus='Usuario no logado';
+}
+ 
+
+  if ($userlog==false){ 
+    header ("location: main.php");
+  }
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -41,100 +74,164 @@
           <table class="table table-condensed table-hover"> 
             <tr>
               <td style="width: 60px">
-                <a href="useradmin.php">
+                <?php
+                if ($userlog){
+                  echo '
+                      <a href="usuarios/admin.php?id='.$_GET['id'].'">';
+                    }
+                ?>
                   <img src="imgicon/metroui-folder-os-configure-icon.png" style="width: 56px">
                 </a>
               </td>
               <td>
-                <a href="useradmin.php">
+                
+                <?php
+                if ($userlog){
+                  echo '
+                      <a href="usuarios/admin.php?id='.$_GET['id'].'">';
+                    }
+                ?>
                   <h4>Usuarios</h4>
                 </a>
               </td>
             </tr>
             <tr>
               <td style="width: 60px">
-                <a href="circularesadmin.php">
+                <?php
+                if ($userlog){
+                  echo '
+                      <a href="circulares/admin.php?id='.$_GET['id'].'">';
+                    }
+                ?>
                   <img src="imgicon/metroui-apps-windows8-news-icon.png" style="width: 56px">
                 </a>
               </td>
               <td>
-                <a href="circularesadmin.php">
+                <?php
+                if ($userlog){
+                  echo '
+                      <a href="circulares/admin.php?id='.$_GET['id'].'">';
+                    }
+                ?>
                   <h4>Circulares</h4>
                 </a>
               </td>
             </tr>
             <tr>
               <td style="width: 60px">
-                <a href="restriccionesadmin.php">
+                <?php
+                if ($userlog){
+                  echo '
+                      <a href="rtraf/admin.php?id='.$_GET['id'].'">';
+                    }
+                ?>
                   <img src="imgicon/metroui-apps-windows8-maps-icon.png" style="width: 56px">
                 </a>
               </td>
               <td>
-                <a href="restriccionesadmin.php">
+                <?php
+                if ($userlog){
+                  echo '
+                      <a href="rtraf/admin.php?id='.$_GET['id'].'">';
+                    }
+                ?>
                   <h4>Restricciones de tráfico</h4>
                 </a>
               </td>
             </tr>
+            
             <tr>
               <td style="width: 60px">
-                <a href="formacionadmin.php">
-                  <img src="imgicon/metroui-apps-calendar-icon.png" style="width: 56px">
-                </a>
-              </td>
-              <td>
-                <a href="formacionadmin.php">
-                  <h4>Formación Específica</h4>
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td style="width: 60px">
-                <a href="legislacionadmin.php">
+                <?php
+                if ($userlog){
+                  echo '
+                      <a href="protocolos/admin.php?id='.$_GET['id'].'">';
+                    }
+                ?>
                   <img src="imgicon/metroui-folder-os-security-approved-icon.png" style="width: 56px">
                 </a>
               </td>
               <td>
-                <a href="legislacionadmin.php">
+                <?php
+                if ($userlog){
+                  echo '
+                      <a href="protocolos/admin.php?id='.$_GET['id'].'">';
+                    }
+                ?>
+                  <h4>Protcolos de seguridad</h4>
+                </a>        
+              </td>
+            </tr>
+
+            <tr>
+              <td style="width: 60px">
+                <?php
+                if ($userlog){
+                  echo '
+                      <a href="legislacion/admin.php?id='.$_GET['id'].'">';
+                    }
+                ?>
+                  <img src="imgicon/metroui-folder-os-security-icon.png" style="width: 56px">
+                </a>
+              </td>
+              <td>
+                <?php
+                if ($userlog){
+                  echo '
+                      <a href="legislacion/admin.php?id='.$_GET['id'].'">';
+                    }
+                ?>
                   <h4>Legislación</h4>
                 </a>        
               </td>
             </tr>
+
             <tr>
               <td style="width: 60px">
-                <a href="seguridadadmin.php">
+                <?php
+                if ($userlog){
+                  echo '
+                      <a href="seguridadadmin.php?id='.$_GET['id'].'">';
+                    }
+                ?>
+                
                   <img src="imgicon/metroui-apps-vlc-mediaplayer-icon.png" style="width: 56px">
                 </a>
               </td>
               <td>
-                <a href="seguridadadmin.php">
+                <?php
+                if ($userlog){
+                  echo '
+                      <a href="seguridadadmin.php?id='.$_GET['id'].'">';
+                    }
+                ?>
                   <h4>Kits seguridad y señalización</h4>
                 </a>
               </td>
             </tr>
             <tr>
               <td style="width: 60px">
-                <a href="documentosadmin.php">
+                 <?php
+                if ($userlog){
+                  echo '
+                      <a href="documentosadmin.php?id='.$_GET['id'].'">';
+                    }
+                ?>
                   <img src="imgicon/metroui-apps-notepad-alt-icon.png" style="width: 56px">
                 </a>
               </td>
               <td>
-                <a href="documentosadmin.php">
+                 <?php
+                if ($userlog){
+                  echo '
+                      <a href="documentosadmin.php?id='.$_GET['id'].'">';
+                    }
+                ?>
                   <h4>Documentos de interes</h4>
                 </a>
               </td>
             </tr>
-            <tr>
-              <td style="width: 60px">
-                <a href="enlacesadmin.php">
-                  <img src="imgicon/metroui-other-task-icon.png" style="width: 56px">
-                </a>
-              </td>
-              <td>
-                <a href="enlacesadmin.php">
-                  <h4>Enlaces de interes</h4>
-                </a>
-              </td>
-            </tr>
+            
           </table>
         </div>
       </div>      

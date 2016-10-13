@@ -1,11 +1,11 @@
 <?php
-if (!file_exists('circulares')){
-	mkdir('circulares');
+if (!file_exists('documentos')){
+	mkdir('documentos');
 }
 
 
 $ds          = DIRECTORY_SEPARATOR;  //1
-$storeFolder = 'circulares';   //2
+$storeFolder = 'documentos';   //2
  if (!empty($_FILES)) {
     $tempFile = $_FILES['file']['tmp_name'];          //3                  
     $targetPath = dirname( __FILE__ ) . $ds. $storeFolder . $ds;  //4     

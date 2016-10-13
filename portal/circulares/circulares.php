@@ -1,7 +1,8 @@
+
 <?php
 
 
-  require_once "conect.php";
+  require_once "../conect.php";
     
 
 if (isset($_GET['id'])){
@@ -21,14 +22,16 @@ if (isset($_GET['id'])){
   $userlog=false;
   $userstatus='Usuario no logado';
 }
- 
-
-  if ($userlog==false){ 
-    header ("location: main.php");
+  
+  if (!isset($_GET['id_carpeta'])){ 
+    header ("location: carpetas.php");
   }
 
+  if ($userlog==false){ 
+    header ("location: ../main.php");
+  }
+  
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -36,11 +39,11 @@ if (isset($_GET['id'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>ADR Consejeros - Portal de Clientes</title>
+   <title>ADR Consejeros - Portal de Clientes</title>
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/font-awesome.css"  rel ="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.css"  rel ="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -61,22 +64,37 @@ if (isset($_GET['id'])){
 
   </head>
   <body>
-    <?php 
-      require_once "navbar.php";
-      require_once "conect.php";
+  <?php
+    require_once "../navbar.php";
+  ?>
+    <?php
+      $sql = 'select * from circulares_carpetas where id_carpeta="'.$_GET['id_carpeta'].'" ';
+      $res = mysqli_query($con,$sql);
+      while ($row=mysqli_fetch_array($res)){
+        $descrip= $row['descripcion'];
+      }
+
     ?>
     <div class="container">
       <div class="row-fluid">
         <div class="col-md-12">
-          <h3>Enlaces de interes</h3>
+          <h3>Listado de circulares de <?php echo $descrip; ?></h3>
             <table class="table table-hover" style="width: 100%">
-            <thead style="font-weight: bold"><tr><td style="width:90%"></td><td></td></tr></thead>
+            <thead style="font-weight: bold"><tr><td>#</td><td style="width:90%">Descripcion</td><td></td></tr></thead>
             <?php
-              $sql = 'select id_enlace,descripcion, ruta from adr_enlaces';
+              $sql = 'select * from circulares where id_carpeta="'.$_GET['id_carpeta'].'" ';
               $res = mysqli_query($con,$sql);
+              $i=1;
               while ($row=mysqli_fetch_array($res)){
-                echo '<tr><td>'.$row['descripcion'].'</td><td><a href="http://'.$row['ruta'].'">Ir a</a></td></tr>';
+                echo '<tr style="font-weight: bold"><td>'.$i.'</td><td>'.$row['descripcion'].'</td><td></td></tr>';
+                $sql2 = 'select * from circulares_ficheros where id_circular="'.$row['id_circular'].'"';
+                $res2 = mysqli_query($con,$sql2);
+                while ($row2=mysqli_fetch_array($res2)){                  
+                  echo '<tr><td></td><td><i class="glyphicon glyphicon-file"></i> '.$row2['descripcion'].'</td><td><a href="'.$row2['ruta'].'" target="_blank">Descargar</a></td></tr>';
+                }
+                $i++;
               }
+
             ?>
                 
             </table>
@@ -85,9 +103,9 @@ if (isset($_GET['id'])){
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="js/bootstrap.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="../js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="js/ie10-viewport-bug-workaround.js"></script>
+    <script src="../js/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>

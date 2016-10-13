@@ -1,3 +1,35 @@
+
+<?php
+
+
+  require_once "conect.php";
+    
+
+if (isset($_GET['id'])){
+  $sql = 'select * from adr_usuarios where admin=1 and hash="'.$_GET['id'].'"';
+  $res = mysqli_query($con,$sql);
+  $num = mysqli_num_rows($res);
+  if ($num<1){
+    $userlog=false;
+    $userstatus='Usuario no valido';
+  }else{
+    $userlog=true;
+    $row=mysqli_fetch_array($res);
+    $user=$row['nombre'];
+    $email=$row['email'];
+  }
+}else{
+  $userlog=false;
+  $userstatus='Usuario no logado';
+}
+ 
+
+  if ($userlog==false){ 
+    header ("location: main.php");
+  }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -42,7 +74,7 @@
           <h3>Administracion de Documentos</h3>
           <div class="col-md-10 col-md-offset-1">
             <h4 style="font-family: helvetica; font-size: 14px; font-weight: bold">Subir documentos de interes</h4>
-            <form action="circularesupload.php" id="uploadzone" class="dropzone" style="border: solid 1px #565656; margin: 10px"></form>                                                            
+            <form action="documentosupload.php" id="uploadzone" class="dropzone" style="border: solid 1px #565656; margin: 10px"></form>                                                            
           </div>
 
             <table class="table table-hover" style="width: 100%">
@@ -53,7 +85,7 @@
               // Leo todos los ficheros de la carpeta
               while ($elemento = readdir($dir)){
                   if( $elemento != "." && $elemento != ".."){
-                      echo '<tr><td>'.$elemento.'</td><td><a href="documentos/'.$elemento.'">Eliminar</td></tr>';
+                      echo '<tr><td>'.$elemento.'</td><td><a href="documentosdel.php?elemento='.$elemento.'">Eliminar</td></tr>';
                   }
               }
           ?>
@@ -75,7 +107,7 @@
     <script type="text/javascript" src="dropzone.js"></script>  
     <script>
             function enlazar(file){
-                var textoconenlace='<a href="http://adrconsejeros.com/portal/circulares/'+file+'">Pincha aqui para descargar: '+file+'</a>';
+                var textoconenlace='<a href="http://adrconsejeros.com/portal/documentos/'+file+'">Pincha aqui para descargar: '+file+'</a>';
                 document.getElementById('textoenlaces').value=document.getElementById('textoenlaces').value+textoconenlace;
             }
             $(function() {

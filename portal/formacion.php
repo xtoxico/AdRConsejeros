@@ -1,3 +1,34 @@
+<?php
+
+
+  require_once "conect.php";
+    
+
+if (isset($_GET['id'])){
+  $sql = 'select * from adr_usuarios where hash="'.$_GET['id'].'"';
+  $res = mysqli_query($con,$sql);
+  $num = mysqli_num_rows($res);
+  if ($num<1){
+    $userlog=false;
+    $userstatus='Usuario no valido';
+  }else{
+    $userlog=true;
+    $row=mysqli_fetch_array($res);
+    $user=$row['nombre'];
+    $email=$row['email'];
+  }
+}else{
+  $userlog=false;
+  $userstatus='Usuario no logado';
+}
+ 
+
+  if ($userlog==false){ 
+    header ("location: main.php");
+  }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -38,18 +69,19 @@
       <div class="row-fluid">
         <div class="col-md-12">
           <h3>Formación Específica</h3>
-            <table class="table table-hover" style="width: 100%">
-            <thead style="font-weight: bold"><tr><td style="width:90%">Titulo</td><td></td></tr></thead>
-            <?php
-              $sql = 'select id_formacion,descripcion, ruta from adr_formacion';
-              $res = mysqli_query($con,$sql);
-              while ($row=mysqli_fetch_array($res)){
-                echo '<tr><td>'.$row['descripcion'].'</td><td><a href="formacion/'.$row['ruta'].'">Más información</a></td><td>Ir al curso</td></tr>';
+            <p>Para dar cumplimiento a lo exigido en el ADR y el la Ley 31/95 sobre la formación obligatoria y específica a los trabajadores le ofrecemos los siguientes Cursos:</p>
+              <b>Mercancías Peligrosas ADR. </b>
+              <ul>
+                <li>Productos Químicos.</li>
+                <li>Sustancias Corrosivas.</li>
+                <li>Nitrato Amónico y Nitrato Potásico.</li>
+                <li>Carburantes en EE.SS y Consumidores Finales.</li>
+              </ul>
+            <p>Todos los cursos cuentan con un Precio Especial para los clientes de ADR Consejeros.</p>
+            <p>Dichos cursos, atendiendo a las necesidades particulares, se  pueden realizar de forma presencial o en la modalidad de Teleformación a través de la siguiente plataforma virtual donde contará con un tutor que ayudará y guiará durante el curso.</p>
 
-              }
-            ?>
-                
-            </table>
+            <a href="http://aulavirtual.institutodeinnovacion.es/">http://aulavirtual.institutodeinnovacion.es/</a>
+
         </div>
       </div>
     </div>

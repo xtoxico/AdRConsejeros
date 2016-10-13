@@ -1,8 +1,8 @@
 
 <?php
 
-header('Content-Type: text/html; charset=utf-8');
-  require_once "conect.php";
+
+  require_once "../conect.php";
     
 
 if (isset($_GET['id'])){
@@ -22,15 +22,13 @@ if (isset($_GET['id'])){
   $userlog=false;
   $userstatus='Usuario no logado';
 }
- 
+
 
   if ($userlog==false){ 
-    header ("location: main.php");
+    header ("location: ../main.php");
   }
 
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -38,11 +36,11 @@ if (isset($_GET['id'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>ADR Consejeros - Portal de Clientes</title>
+   <title>ADR Consejeros - Portal de Clientes</title>
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/font-awesome.css"  rel ="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.css"  rel ="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -63,26 +61,25 @@ if (isset($_GET['id'])){
 
   </head>
   <body>
-    <?php 
-      require_once "navbar.php";
-      require_once "conect.php";
-    ?>
+  <?php
+    require_once "../navbar.php";
+  ?>
     <div class="container">
       <div class="row-fluid">
         <div class="col-md-12">
-          <h3>Kits seguridad y señalización</h3>
+          <h3>Restricciones de tráfico</h3>
             <table class="table table-hover" style="width: 100%">
-            <thead style="font-weight: bold"><tr><td style="width:90%">Titulo</td><td></td></tr></thead>
-           <?php
-              $dir = opendir('seguridad');
-              $numelem=0;
-              // Leo todos los ficheros de la carpeta
-              while ($elemento = readdir($dir)){
-                  if( $elemento != "." && $elemento != ".."){
-                      echo '<tr><td>'.$elemento.'</td><td><a href="seguridad/'.$elemento.'">Leer</td></tr>';
-                  }
+            <thead style="font-weight: bold"><tr><td>#</td><td style="width:90%">Carpetas</td><td></td></tr></thead>
+            <?php
+              $sql = 'select * from rtraf_carpetas';
+              $res = mysqli_query($con,$sql);
+              $i=1;
+              while ($row=mysqli_fetch_array($res)){
+                echo '<tr style="font-weight: bold"><td><img src="carpeta.jpg" style="width: 30px"></td><td><a href="rtraf.php?id='.$_GET['id'].'&id_carpeta='.$row['id_carpeta'].'">'.$row['descripcion'].'</a></td></tr>';                
+                
               }
-          ?>
+
+            ?>
                 
             </table>
         </div>

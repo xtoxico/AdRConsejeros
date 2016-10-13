@@ -1,3 +1,35 @@
+
+<?php
+
+
+  require_once "conect.php";
+    
+
+if (isset($_GET['id'])){
+  $sql = 'select * from adr_usuarios where admin=1 and hash="'.$_GET['id'].'"';
+  $res = mysqli_query($con,$sql);
+  $num = mysqli_num_rows($res);
+  if ($num<1){
+    $userlog=false;
+    $userstatus='Usuario no valido';
+  }else{
+    $userlog=true;
+    $row=mysqli_fetch_array($res);
+    $user=$row['nombre'];
+    $email=$row['email'];
+  }
+}else{
+  $userlog=false;
+  $userstatus='Usuario no logado';
+}
+ 
+
+  if ($userlog==false){ 
+    header ("location: main.php");
+  }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,9 +39,11 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
    <title>ADR Consejeros - Portal de Clientes</title>
 
-    <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.css"  rel ="stylesheet">
+            <link href="css/dropzone/basic.css" rel="stylesheet" >
+                    <link href="css/datepicker/datepicker.css" rel="StyleSheet">
+        <link href="css/wysihtml5/bootstrap-wysihtml5.css" rel="StyleSheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -37,17 +71,25 @@
     <div class="container">
       <div class="row-fluid">
         <div class="col-md-12">
-          <h3>Administracion de Kits de Seguridad</h3>
+          <h3>Administracion de Kits seguridad y señalización</h3>
+          <div class="col-md-10 col-md-offset-1">
+            <h4 style="font-family: helvetica; font-size: 14px; font-weight: bold">Subir documentos de interes</h4>
+            <form action="documentosupload.php" id="uploadzone" class="dropzone" style="border: solid 1px #565656; margin: 10px"></form>                                                            
+          </div>
+
             <table class="table table-hover" style="width: 100%">
-            <thead style="font-weight: bold"><tr><td></td><td style="width:90%">Titulo</td><td></td></tr></thead>
-            <?php
-              $sql = 'select id_seguridad,descripcion from adr_seguridad';
-              $res = mysqli_query($con,$sql);
-              while ($row=mysqli_fetch_array($res)){
-                echo '<tr><td>'.$row['id_seguridad'].'</td><td>'.$row['descripcion'].'</td><td><a href="seguridadnew.php?accion=update&id_circular='.$row['id_seguridad'].'">Editar</a></td></tr>';
+            <thead style="font-weight: bold"><tr><td style="width:90%">Titulo</td><td></td></tr></thead>
+           <?php
+              $dir = opendir('seguridad');
+              $numelem=0;
+              // Leo todos los ficheros de la carpeta
+              while ($elemento = readdir($dir)){
+                  if( $elemento != "." && $elemento != ".."){
+                      echo '<tr><td>'.$elemento.'</td><td><a href="seguridaddel.php?elemento='.$elemento.'">Eliminar</td></tr>';
+                  }
               }
-            ?>
-              <tr><td colspan="4" style="text-align: right"><a href="restriccionesnew.php?accion=nueva" class="btn btn-primary">Nuevo Kits de Seguridad</a> </td></tr>
+          ?>
+                
             </table>
         </div>
       </div>
@@ -58,5 +100,31 @@
     <script src="js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
+    <script type="text/javascript" src="js/datepicker/bootstrap-datepicker.js" ></script>
+    <script type="text/javascript" src="js/wysihtml5/wysihtml5-0.3.0.js" ></script>
+    <script type="text/javascript" src="js/wysihtml5/bootstrap-wysihtml5.js" ></script>
+    <script type="text/javascript" src="js/holder/holder.js"></script>
+    <script type="text/javascript" src="dropzone.js"></script>  
+    <script>
+            function enlazar(file){
+                var textoconenlace='<a href="http://adrconsejeros.com/portal/seguridad/'+file+'">Pincha aqui para descargar: '+file+'</a>';
+                document.getElementById('textoenlaces').value=document.getElementById('textoenlaces').value+textoconenlace;
+            }
+            $(function() {
+                Dropzone.options.uploadzone = {
+                    init: function() {
+                        this.on("success", function(file) { enlazar(file.name);});
+                    },
+                    paramName: "file",
+                    maxFilesize: "50",
+                    addRemoveLinks: true,
+                    dictCancelUpload: "Cancelar subida",
+                    dictCancelUploadConfirmation: "¿Estas seguro que quiere cancelar la subida?",
+                    dictRemoveFile: "Eliminar archivo"
+                    
+                };
+                
+            })
+        </script>
   </body>
 </html>

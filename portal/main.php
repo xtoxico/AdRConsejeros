@@ -3,7 +3,7 @@
 include 'conect.php';
 
 if (isset($_GET['id'])){
-  $sql = 'select * from usuarios where hash="'.$_GET['id'].'"';
+  $sql = 'select * from adr_usuarios where hash="'.$_GET['id'].'"';
   $res = mysqli_query($con,$sql);
   $num = mysqli_num_rows($res);
   if ($num<1){
@@ -12,7 +12,7 @@ if (isset($_GET['id'])){
   }else{
     $userlog=true;
     $row=mysqli_fetch_array($res);
-    $user=$row['usuario'];
+    $user=$row['nombre'];
     $email=$row['email'];
   }
 }else{
@@ -67,7 +67,7 @@ if (isset($_GET['id'])){
         <div class="col-md-3" style="text-align: center">
             <?php 
               if ($userlog){
-                echo '<a href="circulares.php">';
+                echo '<a href="circulares/carpetas.php?id='.$_GET['id'].'">';
               }else{
                 echo '<a href="#" data-toggle="modal" data-target="#myModal">';
               }
@@ -79,7 +79,7 @@ if (isset($_GET['id'])){
         <div class="col-md-3" style="text-align: center">
           <?php 
             if ($userlog){
-              echo '<a href="restricciones.php">';
+              echo '<a href="rtraf/carpetas.php?id='.$_GET['id'].'">';
             }else{
               echo '<a href="#" data-toggle="modal" data-target="#myModal">';
             }
@@ -91,7 +91,7 @@ if (isset($_GET['id'])){
         <div class="col-md-3" style="text-align: center">
           <?php 
             if ($userlog){
-              echo '<a href="formacion.php">';
+              echo '<a href="formacion.php?id='.$_GET['id'].'">';
             }else{
               echo '<a href="#" data-toggle="modal" data-target="#myModal">';
             }
@@ -104,7 +104,7 @@ if (isset($_GET['id'])){
         <div class="col-md-3" style="text-align: center">
           <?php 
             if ($userlog){
-              echo '<a href="legislacion.php">';
+              echo '<a href="legislacion/carpetas.php?id='.$_GET['id'].'">';
             }else{
               echo '<a href="#" data-toggle="modal" data-target="#myModal">';
             }
@@ -118,7 +118,7 @@ if (isset($_GET['id'])){
           <div class="col-md-3" style="text-align: center">
             <?php 
               if ($userlog){
-                echo '<a href="legislacion.php">';
+                echo '<a href="protocolos/carpetas.php?id='.$_GET['id'].'">';
               }else{
                 echo '<a href="#" data-toggle="modal" data-target="#myModal">';
               }
@@ -130,7 +130,7 @@ if (isset($_GET['id'])){
           <div class="col-md-3" style="text-align: center">
             <?php 
               if ($userlog){
-                echo '<a href="seguridad.php">';
+                echo '<a href="seguridad.php?id='.$_GET['id'].'">';
               }else{
                 echo '<a href="#" data-toggle="modal" data-target="#myModal">';
               }
@@ -142,7 +142,7 @@ if (isset($_GET['id'])){
           <div class="col-md-3" style="text-align: center">
             <?php 
               if ($userlog){
-                echo '<a href="documentos.php">';
+                echo '<a href="documentos.php?id='.$_GET['id'].'">';
               }else{
                 echo '<a href="#" data-toggle="modal" data-target="#myModal">';
               }
@@ -154,7 +154,7 @@ if (isset($_GET['id'])){
           <div class="col-md-3" style="text-align: center">
             <?php 
               if ($userlog){
-                echo '<a href="enlaces.php">';
+                echo '<a href="enlaces.php?id='.$_GET['id'].'">';
               }else{
                 echo '<a href="#" data-toggle="modal" data-target="#myModal">';
               }
@@ -164,8 +164,6 @@ if (isset($_GET['id'])){
             </a>
           </div>
         </div>
-
-
       </div>
     </div>
 
@@ -178,21 +176,22 @@ if (isset($_GET['id'])){
             <h4 class="modal-title" id="myModalLabel">Acceso de usuarios</h4>
           </div>
           <div class="modal-body">
-            <form>
+            <form action="login.php" method="post">
               <div class="form-group">
                 <label for="exampleInputEmail1">Correo Electrónico</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Email">
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <input type="password" class="form-control" id="exampleInputPassword1" name="pass" placeholder="Password">
               </div>
-            </form>
+            
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-primary" id="loginbutton">Login</button>
+            <input type="submit" class="btn " value="Login">
           </div>
+          </form>
         </div>
       </div>
     </div>
