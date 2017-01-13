@@ -85,7 +85,7 @@ if (isset($_GET['id'])){
               // Leo todos los ficheros de la carpeta
               while ($elemento = readdir($dir)){
                   if( $elemento != "." && $elemento != ".."){
-                      echo '<tr><td>'.$elemento.'</td><td><a href="documentosdel.php?elemento='.$elemento.'">Eliminar</td></tr>';
+                      echo '<tr><td>'.$elemento.'</td><td><a class="deldocumento">Eliminar</td></tr>';
                   }
               }
           ?>
@@ -110,6 +110,12 @@ if (isset($_GET['id'])){
                 var textoconenlace='<a href="http://adrconsejeros.com/portal/documentos/'+file+'">Pincha aqui para descargar: '+file+'</a>';
                 document.getElementById('textoenlaces').value=document.getElementById('textoenlaces').value+textoconenlace;
             }
+            $('.deldocumento').click(function(){
+              if(confirm("¿Deseas Eliminar este documento?")){
+                  window.location='documentosdel.php?id=<?php echo $_GET['id']?>&elemento='+$(this).attr('data');
+              }
+            })
+
             $(function() {
                 Dropzone.options.uploadzone = {
                     init: function() {

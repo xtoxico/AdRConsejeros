@@ -1,14 +1,14 @@
 
 <?php
     $host_name  = "db616940201.db.1and1.com";
-    $host_name  = "localhost";
+  //  $host_name  = "localhost";
 
     $database   = "db616940201";
     $user_name  = "dbo616940201";
-    $user_name  = "root";
+  //  $user_name  = "root";
   
     $password   = "nitrofoska";
-    $password   = "";
+  //  $password   = "";
   
 
 

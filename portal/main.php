@@ -167,6 +167,17 @@ if (isset($_GET['id'])){
       </div>
     </div>
 
+    <div class="container">
+      <div class="row-fluid">
+        <div class="col-md-3" style="text-align: center">
+            <a href="http://adrconsejeros.es/#contacto">
+            <img src="imgicon/MetroUI-Other-Mail-icon.png" class="img-responsive" style="width:255px">
+             <h4>Consultas</h4>
+             </a>
+        </div>
+      </div>
+    </div>
+
 
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">

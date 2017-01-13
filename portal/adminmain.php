@@ -117,6 +117,7 @@ if (isset($_GET['id'])){
                 </a>
               </td>
             </tr>
+
             <tr>
               <td style="width: 60px">
                 <?php
@@ -139,27 +140,27 @@ if (isset($_GET['id'])){
                 </a>
               </td>
             </tr>
-            
+
             <tr>
               <td style="width: 60px">
                 <?php
                 if ($userlog){
                   echo '
-                      <a href="protocolos/admin.php?id='.$_GET['id'].'">';
+                      <a href="formacion/admin.php?id='.$_GET['id'].'">';
                     }
                 ?>
-                  <img src="imgicon/metroui-folder-os-security-approved-icon.png" style="width: 56px">
+                  <img src="imgicon/metroui-apps-calendar-icon.png" style="width: 56px">
                 </a>
               </td>
               <td>
                 <?php
                 if ($userlog){
                   echo '
-                      <a href="protocolos/admin.php?id='.$_GET['id'].'">';
+                      <a href="formacion/admin.php?id='.$_GET['id'].'">';
                     }
                 ?>
-                  <h4>Protcolos de seguridad</h4>
-                </a>        
+                  <h4>Formación específica</h4>
+                </a>
               </td>
             </tr>
 
@@ -186,6 +187,32 @@ if (isset($_GET['id'])){
               </td>
             </tr>
 
+            
+            
+            <tr>
+              <td style="width: 60px">
+                <?php
+                if ($userlog){
+                  echo '
+                      <a href="protocolos/admin.php?id='.$_GET['id'].'">';
+                    }
+                ?>
+                  <img src="imgicon/metroui-folder-os-security-approved-icon.png" style="width: 56px">
+                </a>
+              </td>
+              <td>
+                <?php
+                if ($userlog){
+                  echo '
+                      <a href="protocolos/admin.php?id='.$_GET['id'].'">';
+                    }
+                ?>
+                  <h4>Protocolos de seguridad</h4>
+                </a>        
+              </td>
+            </tr>
+
+            
             <tr>
               <td style="width: 60px">
                 <?php
@@ -205,7 +232,7 @@ if (isset($_GET['id'])){
                       <a href="seguridadadmin.php?id='.$_GET['id'].'">';
                     }
                 ?>
-                  <h4>Kits seguridad y señalización</h4>
+                  <h4>Kits ADR y señalización</h4>
                 </a>
               </td>
             </tr>
@@ -231,7 +258,28 @@ if (isset($_GET['id'])){
                 </a>
               </td>
             </tr>
-            
+            <tr>
+              <td style="width: 60px">
+                 <?php
+                if ($userlog){
+                  echo '
+                      <a href="enlacesadmin.php?id='.$_GET['id'].'">';
+                    }
+                ?>
+                  <img src="imgicon/metroui-other-task-icon.png" style="width: 56px">
+                </a>
+              </td>
+              <td>
+                 <?php
+                if ($userlog){
+                  echo '
+                      <a href="enlacesadmin.php?id='.$_GET['id'].'">';
+                    }
+                ?>
+                  <h4>Enlaces de interes</h4>
+                </a>
+              </td>
+            </tr>
           </table>
         </div>
       </div>      

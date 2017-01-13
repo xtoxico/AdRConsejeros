@@ -67,10 +67,16 @@ if (isset($_GET['id'])){
       require_once "navbar.php";
       require_once "conect.php";
     ?>
+
+      <div class="row-fluid">
+    <div class="col-md-12">
+        <img src="img/bannerkits.jpg" class="img-responsive">
+      </div>
+  </div>
     <div class="container">
       <div class="row-fluid">
         <div class="col-md-12">
-          <h3>Kits seguridad y señalización</h3>
+          
             <table class="table table-hover" style="width: 100%">
             <thead style="font-weight: bold"><tr><td style="width:90%">Titulo</td><td></td></tr></thead>
            <?php
@@ -79,7 +85,7 @@ if (isset($_GET['id'])){
               // Leo todos los ficheros de la carpeta
               while ($elemento = readdir($dir)){
                   if( $elemento != "." && $elemento != ".."){
-                      echo '<tr><td>'.$elemento.'</td><td><a href="seguridad/'.$elemento.'">Leer</td></tr>';
+                      echo '<tr><td style="font-size: 24px">'.$elemento.'</td><td><a style="font-size: 24px" href="seguridad/'.$elemento.'">Leer</td></tr>';
                   }
               }
           ?>

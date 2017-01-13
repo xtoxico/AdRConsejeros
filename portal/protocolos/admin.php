@@ -78,7 +78,7 @@ if (isset($_GET['id'])){
             <br>
             <br>
           <h3>Eliminar Carpetas / Protocolos</h3>
-            <table class="table table-hover" style="width: 100%">
+            <!--<table class="table table-hover" style="width: 100%">
             <thead style="font-weight: bold"><tr><td>#</td><td style="width:90%">Descripcion</td><td></td></tr></thead>
             <?php
               $sql = 'select * from protocolos_carpetas';
@@ -96,8 +96,56 @@ if (isset($_GET['id'])){
 
             ?>
                 
-            </table>
-                
+            </table>-->
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            
+            <?php
+              $sql = 'select * from protocolos_carpetas';
+              $res = mysqli_query($con,$sql);
+              $i=1;
+              while ($row=mysqli_fetch_array($res)){
+
+
+                echo '<div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="heading'.$i.'">';
+
+
+                echo '<table style="width:100%">
+                        <tr style="font-weight: bold">
+                          <td width="95%">
+                            <h4 class="panel-title">
+                             <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse'.$i.'" aria-expanded="true" aria-controls="collapse'.$i.'">
+                              '.$row['descripcion'].'
+                              </a>
+                             </h4>
+                          </td>
+                          <td>
+                            <a class="delcarpeta" data="'.$row['id_carpeta'].'" title="Eliminar Carpeta" target="_blank">
+                              <i class="glyphicon glyphicon-remove"> </i>
+                            </a>
+                            <a href="upfolder.php?id='.$_GET['id'].'&idfolder='.$row['id_carpeta'].'&foldername='.$row['descripcion'].'" data="'.$row['id_carpeta'].'" title="Editar Carpeta" target="_blank">
+                              <i class="glyphicon glyphicon-pencil"> </i>
+                            </a>
+                          </td>
+                        </tr>
+                      </table>';
+                echo '</div>';
+                echo '<div id="collapse'.$i.'" class="panel-collapse collapse " role="tabpanel" aria-labelledby="heading'.$i.'">
+                        <div class="panel-body">';
+                echo '<table style="width: 100%">';
+                $sql2 = 'select * from protocolos where id_carpeta="'.$row['id_carpeta'].'" order by descripcion';
+                $res2 = mysqli_query($con,$sql2);
+                while ($row2=mysqli_fetch_array($res2)){                  
+                  echo '<tr><td width="95%" style="padding-left: 20px">        '.$row2['descripcion'].'</td><td><a class="delprotocolos" data="'.$row2['id_protocolos'].'" title="Eliminar Circular"><i class="glyphicon glyphicon-remove"> </i></a></td></tr>';
+                }
+                echo '</table>';
+                $i++;
+                echo '</div>
+                    </div>
+                  </div>';
+              }
+
+            ?> 
             
         </div>
       </div>

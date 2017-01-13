@@ -65,6 +65,12 @@ if (isset($_GET['id'])){
       require_once "navbar.php";
       require_once "conect.php";
     ?>
+
+        <div class="row-fluid">
+    <div class="col-md-12">
+        <img src="img/bannerformacion.jpg" class="img-responsive">
+      </div>
+    </div>
     <div class="container">
       <div class="row-fluid">
         <div class="col-md-12">
@@ -72,10 +78,16 @@ if (isset($_GET['id'])){
             <p>Para dar cumplimiento a lo exigido en el ADR y el la Ley 31/95 sobre la formación obligatoria y específica a los trabajadores le ofrecemos los siguientes Cursos:</p>
               <b>Mercancías Peligrosas ADR. </b>
               <ul>
-                <li>Productos Químicos.</li>
-                <li>Sustancias Corrosivas.</li>
-                <li>Nitrato Amónico y Nitrato Potásico.</li>
-                <li>Carburantes en EE.SS y Consumidores Finales.</li>
+
+                <?php
+                  //$con=conectar();
+                  $sql="select data from formacion where id=1";
+                  $res=mysqli_query($con,$sql);
+                  while ($row=mysqli_fetch_array($res)){
+                    echo $row['data'];
+                  }
+                ?>
+                
               </ul>
             <p>Todos los cursos cuentan con un Precio Especial para los clientes de ADR Consejeros.</p>
             <p>Dichos cursos, atendiendo a las necesidades particulares, se  pueden realizar de forma presencial o en la modalidad de Teleformación a través de la siguiente plataforma virtual donde contará con un tutor que ayudará y guiará durante el curso.</p>
@@ -93,3 +105,7 @@ if (isset($_GET['id'])){
     <script src="js/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>
+
+
+
+

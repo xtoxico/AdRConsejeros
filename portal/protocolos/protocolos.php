@@ -67,6 +67,11 @@ if (isset($_GET['id'])){
   <?php
     require_once "../navbar.php";
   ?>
+    <div class="row-fluid">
+    <div class="col-md-12">
+        <img src="../img/bannerprotocolos.jpg" class="img-responsive">
+      </div>
+  </div>
     <?php
       $sql = 'select * from protocolos_carpetas where id_carpeta="'.$_GET['id_carpeta'].'" ';
       $res = mysqli_query($con,$sql);
@@ -81,6 +86,7 @@ if (isset($_GET['id'])){
           <h3>Legislación de <?php echo $descrip; ?></h3>
             <table class="table table-hover" style="width: 100%">
             <thead style="font-weight: bold"><tr><td>#</td><td style="width:90%">Descripcion</td><td></td></tr></thead>
+            <tr style="font-weight: bold"><td></td><td><img src="carpeta.jpg" style="width: 30px"> <a href="carpetas.php?id=<?php echo $_GET['id']?>">Volver....</a></td><td></td></tr>
             <?php
               $sql = 'select * from protocolos where id_carpeta="'.$_GET['id_carpeta'].'" ';
               $res = mysqli_query($con,$sql);

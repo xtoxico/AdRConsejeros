@@ -64,6 +64,11 @@ if (isset($_GET['id'])){
   <?php
     require_once "../navbar.php";
   ?>
+    <div class="row-fluid">
+    <div class="col-md-12">
+        <img src="../img/bannerprotocolos.jpg" class="img-responsive">
+      </div>
+    </div>
     <div class="container">
       <div class="row-fluid">
         <div class="col-md-12">

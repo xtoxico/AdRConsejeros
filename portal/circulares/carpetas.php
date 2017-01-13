@@ -64,18 +64,25 @@ if (isset($_GET['id'])){
   <?php
     require_once "../navbar.php";
   ?>
+  <div class="row-fluid">
+    <div class="col-md-12">
+        <img src="../img/bannercirculares.jpg" class="img-responsive">
+    </div>
+  
+  </div>
     <div class="container">
       <div class="row-fluid">
         <div class="col-md-12">
           <h3>Listado de circulares</h3>
             <table class="table table-hover" style="width: 100%">
-            <thead style="font-weight: bold"><tr><td>#</td><td style="width:90%">Descripcion</td><td></td></tr></thead>
+            <thead style="font-weight: bold"><tr><td></td><td style="width:90%">Descripcion</td><td></td></tr></thead>
+            
             <?php
               $sql = 'select * from circulares_carpetas';
               $res = mysqli_query($con,$sql);
               $i=1;
               while ($row=mysqli_fetch_array($res)){
-                echo '<tr style="font-weight: bold"><td><img src="carpeta.jpg" style="width: 30px"></td><td><a href="circulares.php?id='.$_GET['id'].'&id_carpeta='.$row['id_carpeta'].'">'.$row['descripcion'].'</a></td></tr>';                
+                echo '<tr style="font-weight: bold"><td><img src="carpeta.jpg" style="width: 50px"></td><td><a style="font-size: 24px" href="circulares.php?id='.$_GET['id'].'&id_carpeta='.$row['id_carpeta'].'">'.$row['descripcion'].'</a></td></tr>';                
                 
               }
 
@@ -88,8 +95,8 @@ if (isset($_GET['id'])){
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="js/ie10-viewport-bug-workaround.js"></script>
+    <script src="../js/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>

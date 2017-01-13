@@ -64,10 +64,12 @@ if (isset($_GET['id'])){
   <?php
     require_once "../navbar.php";
   ?>
+
+
     <div class="container">
       <div class="row-fluid">
         <div class="col-md-12">
-          <h3>Añadir Carpetas / Legislación</h3>
+          <h3>Carpetas / Legislación</h3>
 
             <div class="row-fluid">
               <div class="col-md-12">
@@ -77,27 +79,65 @@ if (isset($_GET['id'])){
             </div>
             <br>
             <br>
-          <h3>Eliminar Carpetas / Legislación</h3>
-            <table class="table table-hover" style="width: 100%">
-            <thead style="font-weight: bold"><tr><td>#</td><td style="width:90%">Descripcion</td><td></td></tr></thead>
+          <h3>Carpetas / Lesgislaciones </h3>
+          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            
             <?php
               $sql = 'select * from legislacion_carpetas';
               $res = mysqli_query($con,$sql);
               $i=1;
               while ($row=mysqli_fetch_array($res)){
-                echo '<tr style="font-weight: bold"><td>'.$i.'</td><td>'.$row['descripcion'].'</td><td><a class="delcarpeta" data="'.$row['id_carpeta'].'" title="Eliminar Carpeta" target="_blank"><i class="glyphicon glyphicon-remove"> </i></a></td></tr>';
-                $sql2 = 'select * from legislacion where id_carpeta="'.$row['id_carpeta'].'"';
+
+
+                echo '<div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="heading'.$i.'">';
+
+
+                echo '<table style="width:100%">
+                        <tr style="font-weight: bold">
+                          <td width="95%">
+                            <h4 class="panel-title">
+                             <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse'.$i.'" aria-expanded="true" aria-controls="collapse'.$i.'">
+                              '.$row['descripcion'].'
+                              </a>
+                             </h4>
+                          </td>
+                          <td>
+                            <a class="delcarpeta" data="'.$row['id_carpeta'].'" title="Eliminar Carpeta" target="_blank">
+                              <i class="glyphicon glyphicon-remove"> </i>
+                            </a>
+                            <a href="upfolder.php?id='.$_GET['id'].'&idfolder='.$row['id_carpeta'].'&foldername='.$row['descripcion'].'" data="'.$row['id_carpeta'].'" title="Editar Carpeta" target="_blank">
+                              <i class="glyphicon glyphicon-pencil"> </i>
+                            </a>
+                          </td>
+                        </tr>
+                      </table>';
+                echo '</div>';
+                echo '<div id="collapse'.$i.'" class="panel-collapse collapse " role="tabpanel" aria-labelledby="heading'.$i.'">
+                        <div class="panel-body">';
+                echo '<table style="width: 100%">';
+                $sql2 = 'select * from legislacion where id_carpeta="'.$row['id_carpeta'].'" order by descripcion';
                 $res2 = mysqli_query($con,$sql2);
                 while ($row2=mysqli_fetch_array($res2)){                  
-                  echo '<tr><td></td><td>'.$row2['descripcion'].'</td><td><a class="dellegislacion" data="'.$row2['id_legislacion'].'" title="Eliminar Restriccio"><i class="glyphicon glyphicon-remove"> </i></a></td></tr>';
+                  echo '<tr><td width="95%" style="padding-left: 20px">        '.$row2['descripcion'].'</td><td><a class="dellegislacion" data="'.$row2['id_legislacion'].'" title="Eliminar Circular"><i class="glyphicon glyphicon-remove"> </i></a></td></tr>';
                 }
+                echo '</table>';
                 $i++;
+                echo '</div>
+                    </div>
+                  </div>';
               }
 
             ?>
                 
-            </table>
-                
+            
+        
+
+  
+    
+
+
+
             
         </div>
       </div>

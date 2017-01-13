@@ -65,21 +65,26 @@ if (isset($_GET['id'])){
       require_once "navbar.php";
       require_once "conect.php";
     ?>
+        <div class="row-fluid">
+      <div class="col-md-12">
+          <img src="img/bannerenlaces.jpg" class="img-responsive">
+        </div>
+    </div>
     <div class="container">
       <div class="row-fluid">
         <div class="col-md-12">
           <h3>Enlaces de interes</h3>
-            <table class="table table-hover" style="width: 100%">
-            <thead style="font-weight: bold"><tr><td style="width:90%"></td><td></td></tr></thead>
+            <ul>
+            
             <?php
-              $sql = 'select id_enlace,descripcion, ruta from adr_enlaces';
+              $sql = 'select data from enlaces';
               $res = mysqli_query($con,$sql);
               while ($row=mysqli_fetch_array($res)){
-                echo '<tr><td>'.$row['descripcion'].'</td><td><a href="http://'.$row['ruta'].'">Ir a</a></td></tr>';
+                echo '<li>'.$row['data'].'</li>';
               }
             ?>
                 
-            </table>
+            </ul>
         </div>
       </div>
     </div>

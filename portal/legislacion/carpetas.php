@@ -64,13 +64,20 @@ if (isset($_GET['id'])){
   <?php
     require_once "../navbar.php";
   ?>
+  <div class="row-fluid">
+    <div class="col-md-12">
+        <img src="../img/bannerlegislacion.jpg" class="img-responsive">
+      </div>
+  </div>
+
     <div class="container">
       <div class="row-fluid">
         <div class="col-md-12">
           <h3>Legislación</h3>
           <p>Legislación de referencia en el sector:</p>
             <table class="table table-hover" style="width: 100%">
-            <thead style="font-weight: bold"><tr><td>#</td><td style="width:90%"></td><td></td></tr></thead>
+            <thead style="font-weight: bold"><tr><td></td><td style="width:90%"></td><td></td></tr></thead>
+            
             <?php
               $sql = 'select * from legislacion_carpetas';
               $res = mysqli_query($con,$sql);
@@ -89,8 +96,8 @@ if (isset($_GET['id'])){
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="js/ie10-viewport-bug-workaround.js"></script>
+    <script src="../js/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>

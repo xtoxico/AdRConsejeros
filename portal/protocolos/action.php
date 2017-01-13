@@ -1,4 +1,5 @@
 <?php
+	ob_start();
 	require_once "../conect.php";
 
 	if (isset($_GET['id'])){
@@ -37,7 +38,8 @@
 	}
 
 	if ($_GET['action']=="delprotocolos"){
-		  $sql = 'delete from protocolos where id_protocolos="'.$_GET['data'].'"';		  
+		  $sql = 'delete from protocolos where id_protocolos="'.$_GET['data'].'"';
+		  //echo $sql;	  
   		  $res = mysqli_query($con,$sql);
 	}
 	
@@ -50,7 +52,7 @@
 			move_uploaded_file($files['tmp_name'][$i],'./archivos/'.$newname);		        
 			$sql = 'insert into protocolos (descripcion,id_carpeta,ruta) values ("'.$_POST['data'].'","'.$_POST['data2'].'","./archivos/'.$newname.'")';		  
 			$res = mysqli_query($con,$sql);		  	
-			echo $sql;
+			//echo $sql;
 		}
 	}
 

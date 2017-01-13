@@ -104,9 +104,9 @@
                 <div class="col-lg-12 text-center">
                     <img src="img/logo-adr-color.png" style="width: 40%; min-width: 560px"/> 
                     <h2 style="text-align: left"><u>ADR Consejeros</u></h2><br>
-                    <p class="lead" style="text-align: left" >Empresa creada en el <b>2014</b>, con el firme propósito de dar un nuevo aire al <b>Servicio Ajeno de Consejero de Seguridad</b>,<i>adaptándome a la nueva Legislación e introduciendo un Método de Trabajo propio, basado en la experiencia y en la cercanía con el cliente.</i></p>
+                    <p class="lead" style="text-align: left" >Empresa creada en el <b>2014</b>, con el firme propósito de dar un nuevo aire al <b>Servicio Ajeno de Consejero de Seguridad</b>,<i>adaptándose a la nueva Legislación e introduciendo un Método de Trabajo propio, basado en la experiencia y en la cercanía con el cliente.</i></p>
                     <p class="lead" style="text-align: left">Al frente de la misma esta José Carlos Medina De Dios, Ingeniero Técnico Industrial por la Universidad de Jaén, Técnico Superior en Prevención de Riesgos Laborales, Master por Escuela de Formación Empresarial en Calidad y Medio Ambiente y Consejero de Seguridad por el Ministerio de Fomento. Además, cuenta con el Certificado de Aptitud Pedagógica por la Universidad de Jaén y Formador de Formadores por FOREM.</p>
-                    <p class="lead" style="text-align: left">El 2001, comienza su andadura profesional en el sector de la distribución de Fitosanitarios y desde 2.002, de forma paralela, colaborando con ADR Seguridad y Control Medioambiental S.L. e Instituto Andaluz de Logística SL, empresas dedicadas a la prestación del Servicio Ajeno de Consejero de Seguridad. Empresas en las que continua su labor profesional desde el 2011 con dedicación exclusiva, hasta la creación de ADR Consejeros en el 2014.</p>
+                    <p class="lead" style="text-align: left">El 2001, comienza su andadura profesional en el sector de la distribución de Fitosanitarios y desde 2.002, de forma paralela, prestando el servicio ajeno de Consejero de Segudidad a diversas empresas. Empresas en las que continua su labor profesional desde el 2011 con dedicación exclusiva, hasta la creación de ADR Consejeros en el 2014.</p>
 
                 </div>
             </div>
@@ -129,8 +129,8 @@
                             Las siglas <b>ADR</b>, con las que se conoce usualmente este convenio, provienen de las iniciales del pacto en inglés y en francés:
                         </p>
                         <ul style="text-align: left" class="lead">
-                            <li>European Agreement concerning the International Carriage of Dangerous Goods by Road.</li>
-                            <li>Accord Européen Relatif au Transport des Marchandises Dangereuses par Route.</li>
+                            <li>European <b>A</b>greement concerning the International Carriage of <b>D</b>angerous Goods by <b>R</b>oad.</li>
+                            <li><b>A</b>ccord Européen Relatif au Transport des Marchandises <b>D</b>angereuses par <b>R</b>oute.</li>
                         </ul>
                         <p class="lead" style="text-align: left">
                             Traducido al Español, <b>ADR</b> significa <b>Acuerdo Europeo sobre Transporte Internacional de Mercancías Peligrosas por Carretera</b>.
@@ -152,7 +152,8 @@
                         <li>Los tipos de envases y embalajes que se pueden utilizar.</li>
                         <li>El etiquetado y la señalización de bultos y vehículos</li>
                         <li>Documentación necesaria para poder realizar este transporte</li>
-                        <li>Tipos de vehículos, equipamiento especial y certificados.4Las normas sobre la construcción de cisternas.</li>
+                        <li>Tipos de vehículos, equipamiento especial y certificados.</li>
+                        <li>Las normas sobre la construcción de cisternas.</li>
                         <li>Carga, estiba y descarga de mercancías.</li>
                     </ul>
                      
@@ -167,7 +168,7 @@
                     </p>
 
                     <p class="lead" style="text-align: left">Que empresas necesitan tener un Consejero de Seguridad.<br>
-                    <i>"Las empresas que carguen, descarguen, transporten o embalen mercancías peligrosas y no se vean afectadas por algún tipo de exención en las condiciones y cantidades previstas en el ADR"</i>
+                    <i><b>"Las empresas que carguen, descarguen, transporten o embalen mercancías peligrosas y no se vean afectadas por algún tipo de exención en las condiciones y cantidades previstas en el ADR"</b></i>
 
 
                     </p>
@@ -346,38 +347,44 @@
 
         <div class="container">
             <div class="col-md-12">
+                
                 <h2>Formulario de Contacto</h2>
                 <p class="lead" style="text-align: left">Estaremos encantados de contestarle</p>
-                <form class="form-horizontal" action="send.php">
+                <div id="bloqueformcontacto">
+                <form class="form-horizontal" id="formulariocontacto" >
                   <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
                     <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputEmail3" name="inputEmail" placeholder="Email">
+                      <input type="email" required class="form-control" id="inputEmail3" name="inputEmail" placeholder="Email">
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="inputPassword3" class="col-sm-2 control-label">Nombre</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputPassword3" placeholder="Nombre para dirigirme a usted">
+                      <input type="text" required class="form-control" id="inputPassword3" placeholder="Nombre para dirigirme a usted">
                     </div>
                   </div>                  
                   <div class="form-group">
                     <label for="inputConsulta" class="col-sm-2 control-label">Describa su consulta</label>
                     <div class="col-sm-10">
-                      <textarea id="inputConsulta" name="inputConsulta" rows="15" class="col-sm-12"></textarea>
+                      <textarea id="inputConsulta" required name="inputConsulta" rows="15" class="col-sm-12" style="color: black"></textarea>
                     </div>
                   </div>
+                  
+                  </form>
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-default">Enviar contacto</button>
+                      <button  id="botonenviar"  class="btn btn-default" >Enviar contacto</button>
                     </div>
                   </div>
-                </form>
+                  
+                  </div>
+                
             </div>
         </div>
         <!-- /.container -->
     </section>
-
+    
    
 
     <!-- Footer -->
@@ -385,12 +392,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 col-lg-offset-1 text-center">
-                    <h4><strong>Adr Consejeros</strong>
+                    <h4><strong>ADR Consejeros</strong>
                     </h4>
                     <p>Jose Carlos Medina</p>
                     <ul class="list-unstyled">
                         <li><i class="fa fa-phone fa-fw"></i> (+34) 678 524 314</li>
-                        <li><i class="fa fa-envelope-o fa-fw"></i>  <a href="mailto:name@example.com">info@adrconsejeros.es</a>
+                        <li><i class="fa fa-envelope-o fa-fw"></i>  <a href="mailto:josecmendina@adrconsejeros.es">josecmedina@adrconsejeros.es</a>
                         </li>
                     </ul>
                     <br>
@@ -439,7 +446,29 @@
         });
     });
     </script>
+    <script>
+            $('#botonenviar').click(function(){
+                datospost={"inputEmail": $('#inputEmail3').val(),"inputConsulta": $('#inputConsulta').val()};
+                $('#bloqueformcontacto').animate({height: '0px'},1000,function(){
+                    $('#bloqueformcontacto').html('<br><br><br><h2 style="text-align: center">Consulta enviada con éxito</h2>');
+                    $('#bloqueformcontacto').animate({height: '100px'},1000);
+                    
+                    console.log(datospost);
+                    $.ajax({
+                            type: "post",
+                            url: "send.php",                
+                            data: datospost ,                                          
+                            success: function(msg)
+                            {
+                                console.log(msg);
+                            }
+                    });	
+                });
+                
 
+            })
+
+   </script>
 </body>
 
 </html>
